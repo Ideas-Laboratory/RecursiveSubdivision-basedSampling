@@ -1,0 +1,52 @@
+ÒýÓÃ£º
+https://github.com/DmitryUlyanov/Multicore-TSNE
+
+uci:
+¡Ì person activity: x coordinate, y coordinate, activity ----- ConfLongDemo_JSI
+¡Ì abalone: length, whole weight, sex ---- abalone
+adult: age, hours, race ----- adult
+¡Ì Beijing PM2.5: Iws, pm2.5, cbwd ----- BeijingPM2.5
+¡Ì avila: F8,F10,Class ----- avila
+bank: 'age','duration','job' ---- bank
+¡Ì Crowdsourced Mapping: '20150720_N','max_ndvi','class' ----- CrowdsourcedMapping£ºforest, water, impervious, farm
+¡Ì Condition Based Maintenance of Naval Propulsion Plants: HP Turbine exit temperature (T48), Turbine Injecton Control (TIC), Ship speed (v) ----- CBM
+¡Ì Covertype: Elevation, Horizontal_Distance_To_Hydrology, Cover_Type ---- forest_covtype
+¡Ì Daily and Sports Activities: T_xmag, T_ymag, activitiy ---- DailySports
+¡Ì Sensorless Drive: 8, 9, 48 ----- Sensorless_drive_diagnosis
+default of credit card clients: X17, X22, Marital status ----- default_of_credit_card_clients
+Diabetes 130-US hospitals for years 1999-2008: 'num_lab_procedures','num_medications','race' ---- diabetic
+¡Ì Epileptic Seizure Recognition: TSNE, 'y' ---- Epileptic
+Individual household electric power consumption: 'seconds_in_one_day','value','variable' --- household_power_consumption
+¡Ì Facebook Comment Volume: 33, 34, weekday ----- Facebook_Comment_Volume
+¡Ì Gas Sensor Array Drift Dataset at Different Concentrations: 24,25,'category' ---- Gas_Sensor_Array_Drift
+¡Ì Gas sensors for home activity monitoring: 'Temp.','Humidity','class' ---- HT_Sensor
+¡Ì Gesture Phase Segmentation: hy, rhy, phase ---- gesture_phase
+¡Ì GNFUV Unmanned Surface Vehicles Sensor: 'Humidity','Temperature','Pi' ---- GNFUV
+¡Ì Grammatical Facial Expressions: '89x','89y','89z' --- grammatical_facial_expression
+¡Ì Human Activity Recognition Using Smartphones: 16,18,'y' ---- Human Activity Recognition
+¡Ì IDA2016Challenge: ag_001,ag_002,class ---- aps_failure
+KDD Cup 1998: IC1,IC3,LIFESRC ---- cup98LRN.csv
+¡Ì KDD Cup 1999: 22,28,1 ---- kddcup99.csv
+¡Ì MAGIC Gamma Telescope: fM3Long, fAlpha, class ----- Telescope.csv
+¡Ì MoCap Hand Postures: 'Y0', 'Z0', 'Class' ------ MoCap
+News Aggregator get_offsets: 0,1,label ----  NewsAggregator
+¡Ì News Popularity in Multiple Social Media Platforms TSNE: 0,1,Topic  ----  NewsPopularity
+Nomao: 59, 60, 100 ---- Nomao
+
+http://stat-computing.org/dataexpo/2009/the-data.html
+¡Ì 2008 flight: Distance, CRSElapsedTime, CancellationCode ---- 2008_cancelled_flights
+
+kaggle:
+¡Ì Barcelona accident_2017: 'Longitude','Latitude','Victims' ----- Barcelona_accident
+Credit Card Fraud Detection: V11, V17, Class ---- CreditCardFraud
+Wine Reviews winemag-data-130k-v2: 'description_length', 'points', 'country' ---- wine
+¡Ì Global Terrorism Database: 'latitude', 'longitude', 'specificity' ---- terrorism
+Google Play Store Apps googleplaystore_user_reviews: 'Sentiment_Polarity', 'Sentiment_Subjectivity', 'Sentiment' ---- googleplaystore_sentiment
+¡Ì Data Science for Good: Kiva Crowdfunding: 'loan_amount', 'term_in_months', 'repayment_interval' ---- kiva_loans
+Black Friday TSNE: 0, 1, 'City_Category' ----  BlackFriday
+
+kang feng:
+¡Ì satimage: dsc 0.04 ----- satimage
+
+word2vec:
+GoogleNews-vectors-negative300.bin.gz PCA --- word2vec_pca
