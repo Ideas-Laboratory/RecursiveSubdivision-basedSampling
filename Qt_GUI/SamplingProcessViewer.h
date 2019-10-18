@@ -26,7 +26,7 @@ public:
 	void redrawPoints();
 
 	void sample();
-	void adjustSeeds();
+	void sampleWithoutTreeConstruction();
 	
 	void saveImagePNG(const QString& path);
 	void saveImageSVG(const QString& path);

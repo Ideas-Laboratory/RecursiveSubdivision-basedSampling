@@ -27,18 +27,24 @@ public:
 
 	std::vector<std::weak_ptr<BinningTreeNode>> getAllLeaves();
 
+	/* main function that contains the framework */
 	Indices execute(const PointSet* origin, const QRect& bounding_rect);
-	Indices adjustSeeds();
 	Indices executeWithoutCallback(const PointSet* origin, const QRect& bounding_rect);
 
+	// determine class labels and select samples
+	Indices KDTreeGuidedSampling();
+	
 	void setStatusCallback(Report<Status> cb) {	status_callback = cb; }
 	void setCanvasCallback(Report<std::vector<TreeNode>> cb) { canvas_callback = cb; }
 
 	const static int max_iteration;
 private:
-	void divide(std::shared_ptr<BinningTreeNode> root, std::vector<TreeNode>* leaves, bool shouldSplit); // assignment
-	Indices selectNewSeed(const std::vector<TreeNode>& leaves); // update
-	bool notFinish(); // termination
+	// determine whether the subtree should be split
+	void divideTree(std::shared_ptr<BinningTreeNode> root, std::vector<TreeNode>* leaves, bool should_split); 
+	// Randomly select samples for leaves
+	Indices selectNewSamples(const std::vector<TreeNode>& leaves);
+	// termination condition
+	bool notFinish(); 
 
 	std::vector<NodeWithQuota> determineLabelOfLeaves();
 	Indices leavesToSeeds();

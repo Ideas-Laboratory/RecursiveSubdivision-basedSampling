@@ -65,7 +65,7 @@ public:
 	bool split_new(std::shared_ptr<BinningTreeNode> node);
 	
 	uint selectSeedIndex(std::shared_ptr<BinningTreeNode> node);
-	uint adjustSeedIndex(std::shared_ptr<BinningTreeNode> node, uint label);
+	uint selectSeedIndex(std::shared_ptr<BinningTreeNode> node, uint label);
 
 	void updateLeafNum(std::shared_ptr<BinningTreeNode> node);
 

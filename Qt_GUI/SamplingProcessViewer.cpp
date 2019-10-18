@@ -142,10 +142,10 @@ void SamplingProcessViewer::sample()
 	emit finished();
 }
 
-void SamplingProcessViewer::adjustSeeds()
+void SamplingProcessViewer::sampleWithoutTreeConstruction()
 {
 	emit adjustmentStart();
-	seeds = abs.adjustSeeds();
+	seeds = abs.KDTreeGuidedSampling();
 	//drawPointByClass(indicesToPointSet(points_in_visual_space, seeds));
 	drawPointRandomly(indicesToPointSet(points_in_visual_space, seeds));
 	//drawPointLowDensityUpper(indicesToPointSet(points_in_visual_space, seeds));

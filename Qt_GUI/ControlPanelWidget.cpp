@@ -171,7 +171,7 @@ ControlPanelWidget::ControlPanelWidget(SamplingProcessViewer * viewer, PointSet 
 	});
 	connect(adjustButton, &QPushButton::released, [this]() {
 		this->disableButtons();
-		this->viewer->adjustSeeds();
+		this->viewer->sampleWithoutTreeConstruction();
 	});
 }
 

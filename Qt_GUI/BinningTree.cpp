@@ -149,12 +149,10 @@ uint BinningTree::selectSeedIndex(shared_ptr<BinningTreeNode> node)
 	}
 
 	node->seed_index = indices[rand() % indices.size()];
-	//LabeledPoint center(grid2visual(node->b.left + node->b.width / 2.0, margin_left), grid2visual(node->b.top + node->b.height / 2.0, margin_top), -1);
-	//node->seed_index = indices[rouletteSelection(indices, [this, &center](uint i) { return costFunction(dataset->at(i), &center); })];
 	return node->seed_index;
 }
 
-uint BinningTree::adjustSeedIndex(shared_ptr<BinningTreeNode> node, uint label)
+uint BinningTree::selectSeedIndex(shared_ptr<BinningTreeNode> node, uint label)
 {
 	vector<uint> indices;
 	for (auto &b : node->min_grids_inside) {

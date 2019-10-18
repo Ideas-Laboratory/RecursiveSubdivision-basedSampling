@@ -29,27 +29,27 @@ Indices AdaptiveBinningSampling::execute(const PointSet * origin, const QRect& b
 
 	tree = make_unique<BinningTree>(origin, bounding_rect);
 	//initialize seed List and status
-	Indices seeds(selectNewSeed(vector<TreeNode>{ {tree->getRoot(), true, true}}));
+	Indices samples(selectNewSamples(vector<TreeNode>{ {tree->getRoot(), true, true}}));
 	current_iteration_status = { 0 };
 	//start iteration
 	do {
 		current_iteration_status.split_num = 0;
 
 		vector<TreeNode> leaves;
-		divide(tree->getRoot().lock(), &leaves, true);
+		divideTree(tree->getRoot().lock(), &leaves, true);
 
-		seeds = selectNewSeed(leaves);
+		samples = selectNewSamples(leaves);
 
-		current_iteration_status.seed_num = seeds.size();
+		current_iteration_status.seed_num = samples.size();
 		++current_iteration_status.iteration;
 
 		canvas_callback(leaves);
 		status_callback(current_iteration_status);
 	} while (notFinish());
-	return seeds;
+	return samples;
 }
 
-void AdaptiveBinningSampling::divide(shared_ptr<BinningTreeNode> root, vector<TreeNode>* leaves, bool should_split)
+void AdaptiveBinningSampling::divideTree(shared_ptr<BinningTreeNode> root, vector<TreeNode>* leaves, bool should_split)
 {
 	auto child1 = root->getChild1().lock(), child2 = root->getChild2().lock();
 	
@@ -59,8 +59,8 @@ void AdaptiveBinningSampling::divide(shared_ptr<BinningTreeNode> root, vector<Tr
 			c1_ss = root->childShouldSplit(child1, params.threshold);
 			c2_ss = root->childShouldSplit(child2, params.threshold);
 		}
-		divide(child1, leaves, c1_ss);
-		divide(child2, leaves, c2_ss);
+		divideTree(child1, leaves, c1_ss);
+		divideTree(child2, leaves, c2_ss);
 		tree->updateLeafNum(root);
 	}
 	else { // no child nodes
@@ -83,26 +83,26 @@ void AdaptiveBinningSampling::divide(shared_ptr<BinningTreeNode> root, vector<Tr
 	}
 }
 
-Indices AdaptiveBinningSampling::selectNewSeed(const vector<TreeNode>& leaves)
+Indices AdaptiveBinningSampling::selectNewSamples(const vector<TreeNode>& leaves)
 {
-	Indices seeds;
+	Indices samples;
 	for (auto &leaf : leaves) {
 		uint index = tree->selectSeedIndex(leaf.node.lock());
-		seeds.push_back(index);
+		samples.push_back(index);
 	}
-	return seeds;
+	return samples;
 }
 
-Indices AdaptiveBinningSampling::adjustSeeds()
+Indices AdaptiveBinningSampling::KDTreeGuidedSampling()
 {
 	auto &leaves = determineLabelOfLeaves();
 
-	Indices seeds;
+	Indices samples;
 	for (auto &leaf : leaves) {
-		uint index = tree->adjustSeedIndex(leaf.first.lock(), leaf.second.begin()->first);
-		seeds.push_back(index);
+		uint index = tree->selectSeedIndex(leaf.first.lock(), leaf.second.begin()->first);
+		samples.push_back(index);
 	}
-	return seeds;
+	return samples;
 }
 
 Indices AdaptiveBinningSampling::executeWithoutCallback(const PointSet * origin, const QRect& bounding_rect)
@@ -116,15 +116,15 @@ Indices AdaptiveBinningSampling::executeWithoutCallback(const PointSet * origin,
 	do {
 		current_iteration_status.split_num = 0;
 
-		divide(tree->getRoot().lock(), nullptr, true);
+		divideTree(tree->getRoot().lock(), nullptr, true);
 		++current_iteration_status.iteration;
 	} while (notFinish());
-	auto &seeds = adjustSeeds();//leavesToSeeds();
+	auto &samples = KDTreeGuidedSampling();//leavesToSeeds();
 	qDebug() << (std::clock() - start) / (double)CLOCKS_PER_SEC;
 
-	current_iteration_status.seed_num = seeds.size();
+	current_iteration_status.seed_num = samples.size();
 	if(status_callback) status_callback(current_iteration_status);
-	return seeds;
+	return samples;
 }
 
 inline bool AdaptiveBinningSampling::notFinish()
