@@ -39,8 +39,3 @@ The following libraries are required:
 * Qt5Widgets
 * Qt5Svg
 * Qt5PrintSupport
-
-### Building
-```
-TODO
-```
