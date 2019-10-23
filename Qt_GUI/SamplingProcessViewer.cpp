@@ -54,9 +54,17 @@ void SamplingProcessViewer::mouseMoveEvent(QMouseEvent *me)
 void SamplingProcessViewer::mouseReleaseEvent(QMouseEvent *me)
 {
 	bool ok;
-	uint radius = QInputDialog::getInt(this->parentWidget(), "Set the radius inside", "The radius is:", 1, 1, 1000, 1, &ok);
-	if (ok) {
-		new_area->setRadius(radius);
+	QInputDialog size_dialog(this->parentWidget(), Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
+	size_dialog.setInputMode(QInputDialog::IntInput);
+	size_dialog.setWindowTitle("Grid size setting");
+	size_dialog.setLabelText("set the grid size inside the selected area to:");
+	size_dialog.setIntRange(1, 1000);
+	size_dialog.setIntValue(6);
+	size_dialog.setOkButtonText("Use new grid size");
+	size_dialog.setCancelButtonText("Just count points");
+	
+	if (size_dialog.exec()) {
+		new_area->setRadius(size_dialog.intValue());
 		PointSet *points = new PointSet();
 		for (auto &p : *points_in_visual_space) {
 			if (new_area->rect().contains(p->pos))

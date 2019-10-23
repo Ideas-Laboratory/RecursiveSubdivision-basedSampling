@@ -32,9 +32,9 @@ DisplayPanelWidget::DisplayPanelWidget(SamplingProcessViewer *spv, unordered_map
 	connect(spv, &SamplingProcessViewer::redrawStart, [this]() {
 		removeSpecifiedChildren([](QWidget* w) { return !w->objectName().isEmpty(); });
 	});
-	connect(spv, &SamplingProcessViewer::pointSelected, [this](uint index, uint class_) {
-		qDebug() << index << ',' << QString(this->class2label->at(class_).c_str());
-	});
+	//connect(spv, &SamplingProcessViewer::pointSelected, [this](uint index, uint class_) {
+	//	qDebug() << index << ',' << QString(this->class2label->at(class_).c_str());
+	//});
 }
 
 void DisplayPanelWidget::resizeEvent(QResizeEvent * e)
