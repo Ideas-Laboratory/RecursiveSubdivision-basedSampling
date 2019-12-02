@@ -23,12 +23,17 @@ We present a non-uniform recursive sampling technique for multi-class scatterplo
 ### Citation
 ```
 @ARTICLE{sampling2019,
-author={Xin Chen, Tong Ge, Jian Zhang, Baoquan Chen, Chi-Wing Fu, Oliver Deussen and Yunhai Wang},
+author={X. {Chen} and T. {Ge} and J. {Zhang} and B. {Chen} and C. {Fu} and O. {Deussen} and Y. {Wang}},
 journal={IEEE Transactions on Visualization and Computer Graphics},
 title={A Recursive Subdivision Technique for Sampling Multi-class Scatterplots},
-year={2019},
+year={2020},
+volume={26},
+number={1},
+pages={729-738},
 keywords={Visualization;Data visualization;Measurement;Sampling methods;Estimation;Clutter;Image color analysis;Scatterplot;multi-class sampling;kd-tree;outlier;relative density},
-doi={10.1109/TVCG.2019.2934541}
+doi={10.1109/TVCG.2019.2934541},
+ISSN={2160-9306},
+month={Jan}
 }
 ```
 
